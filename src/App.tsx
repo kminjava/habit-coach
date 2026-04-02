@@ -8,11 +8,13 @@ import { Welcome } from './components/Onboarding/Welcome'
 import { AvatarSelect } from './components/Onboarding/AvatarSelect'
 import { Nickname } from './components/Onboarding/Nickname'
 import { HabitSetup } from './components/Onboarding/HabitSetup'
+import { CalendarModal } from './components/Calendar/CalendarModal'
 
 type OnboardingStep = 'welcome' | 'avatar' | 'nickname' | 'habits' | 'complete'
 
 function App() {
   const [step, setStep] = useState<OnboardingStep>('welcome')
+  const [showCalendar, setShowCalendar] = useState(false)
   const { onboardingComplete, loadData: loadUserData, nickname } = useUserStore()
   const { loadData: loadHabitData } = useHabitStore()
   const { loadData: loadCoachData } = useCoachStore()
@@ -71,14 +73,25 @@ function App() {
             </div>
           </div>
 
-          {/* Date indicator */}
-          <div className="text-right">
-            <p className="text-sm font-medium text-gray-700">
-              {new Date().toLocaleDateString('zh-CN', { month: 'long', day: 'numeric' })}
-            </p>
-            <p className="text-xs text-gray-400">
-              {new Date().toLocaleDateString('zh-CN', { weekday: 'long' })}
-            </p>
+          <div className="flex items-center gap-2">
+            {/* Calendar button */}
+            <button
+              onClick={() => setShowCalendar(true)}
+              className="w-9 h-9 rounded-xl bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 transition-colors"
+              title="打卡日历"
+            >
+              📅
+            </button>
+
+            {/* Date indicator */}
+            <div className="text-right">
+              <p className="text-sm font-medium text-gray-700">
+                {new Date().toLocaleDateString('zh-CN', { month: 'long', day: 'numeric' })}
+              </p>
+              <p className="text-xs text-gray-400">
+                {new Date().toLocaleDateString('zh-CN', { weekday: 'long' })}
+              </p>
+            </div>
           </div>
         </div>
       </header>
@@ -107,6 +120,9 @@ function App() {
       <footer className="relative text-center py-6 text-sm text-gray-400">
         <p>每天进步一点点</p>
       </footer>
+
+      {/* Calendar Modal */}
+      {showCalendar && <CalendarModal onClose={() => setShowCalendar(false)} />}
     </div>
   )
 }

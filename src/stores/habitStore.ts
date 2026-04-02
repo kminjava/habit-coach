@@ -14,6 +14,8 @@ interface HabitStore {
   checkIn: (habitId: string) => Promise<void>
   hasCheckedInToday: (habitId: string) => boolean
   getTodayCheckIns: () => CheckIn[]
+  getCheckInsByMonth: (year: number, month: number) => Map<string, CheckIn[]>
+  getCheckInsForDate: (dateStr: string) => CheckIn[]
 }
 
 export const useHabitStore = create<HabitStore>()(
@@ -78,6 +80,22 @@ export const useHabitStore = create<HabitStore>()(
       getTodayCheckIns: () => {
         const today = new Date().toISOString().split('T')[0]
         return get().checkIns.filter((c) => c.date === today)
+      },
+
+      getCheckInsByMonth: (year, month) => {
+        const prefix = `${year}-${String(month + 1).padStart(2, '0')}`
+        const monthCheckIns = get().checkIns.filter((c) => c.date.startsWith(prefix))
+        const map = new Map<string, CheckIn[]>()
+        for (const ci of monthCheckIns) {
+          const list = map.get(ci.date) ?? []
+          list.push(ci)
+          map.set(ci.date, list)
+        }
+        return map
+      },
+
+      getCheckInsForDate: (dateStr) => {
+        return get().checkIns.filter((c) => c.date === dateStr)
       },
     }),
     {
