@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { db, CoachState } from '../db'
-import { checkUnlocks, getExpression, getLevel, UNLOCK_RULES } from '../config/unlockRules'
+import { db } from '../db'
+import type { CoachState } from '../db'
+import { checkUnlocks, getExpression, getLevel } from '../config/unlockRules'
 
 interface CoachStore {
   streak: number

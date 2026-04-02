@@ -1,4 +1,4 @@
-import { Habit } from '../../db'
+import type { Habit } from '../../db'
 import { CheckInButton } from './CheckInButton'
 
 interface HabitCardProps {

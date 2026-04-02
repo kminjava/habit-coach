@@ -8,7 +8,6 @@ import { Welcome } from './components/Onboarding/Welcome'
 import { AvatarSelect } from './components/Onboarding/AvatarSelect'
 import { Nickname } from './components/Onboarding/Nickname'
 import { HabitSetup } from './components/Onboarding/HabitSetup'
-import { Complete } from './components/Onboarding/Complete'
 
 type OnboardingStep = 'welcome' | 'avatar' | 'nickname' | 'habits' | 'complete'
 

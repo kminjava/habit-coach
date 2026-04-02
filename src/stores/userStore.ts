@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { db, UserProfile } from '../db'
+import { db } from '../db'
+import type { UserProfile } from '../db'
 import { AVATAR_TEMPLATES } from '../config/avatars'
 
 interface UserStore {

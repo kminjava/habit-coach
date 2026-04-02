@@ -1,10 +1,4 @@
-import { db, CheckIn } from '../db'
-
-export function calculateStreak(habitId: string): number {
-  // This is a simplified version - in production you'd query IndexedDB
-  // For now, return 0 and let the coach store handle it
-  return 0
-}
+import type { CheckIn } from '../db'
 
 export function getStreakFromCheckIns(checkIns: CheckIn[]): number {
   if (checkIns.length === 0) return 0

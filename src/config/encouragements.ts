@@ -31,7 +31,7 @@ const encouragements: Record<EncouragementType, string[]> = {
   returnAfterMiss: [
     '没关系，重要的是你回来了 👋',
     '欢迎回来！我们继续前进 🌱',
-    '重新开始永远不晚，let's go 💪',
+    '重新开始永远不晚，let us go 💪',
     '每个人都会间断，重要的是回来 ✊',
     '欢迎回来，新的开始！🌟',
   ],
@@ -43,7 +43,7 @@ function getRandomItem<T>(arr: T[]): T {
 
 export function getEncouragement(
   type: EncouragementType,
-  streak?: number
+  _streak?: number
 ): string {
   const templates = encouragements[type]
   return getRandomItem(templates)

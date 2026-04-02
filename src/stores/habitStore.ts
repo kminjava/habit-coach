@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { db, Habit, CheckIn } from '../db'
+import { db } from '../db'
+import type { Habit, CheckIn } from '../db'
 import { v4 as uuidv4 } from 'uuid'
 
 interface HabitStore {
